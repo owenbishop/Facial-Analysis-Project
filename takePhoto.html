@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+      <link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+      <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+      <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<link rel="stylesheet" type="text/css" href="facialRecognition.css">
+	<script>
+         $(function() {
+            $( "#dialog-1" ).dialog({
+               autoOpen: true,  
+			   create: function(e, ui){
+			   var pane = $(this).dialog("widget").find(".ui-dialog-buttonpane")
+			   $("<label class='shut-up'><input type='checkbox'/>Stop Asking!</label>").prependTo(pane)
+			   },
+			   buttons: {
+						"Yes": function() {
+						$(this).dialog('close');
+						},
+						"No": function (){
+						$(this).dialog('close');
+						callback(false);
+						}
+					}
+            });
+         });
+		 
+		 function callback(value){
+		 if(value){
+		 alert("confirmed");
+		 }else{
+		window.location.href='index.php';
+		}
+	}
+      </script>
+	<title>Facial Analysis Research</title>
+</head>
+<body>
+	<h1>Facial Analysis Research</h1>
+
+	<div id = "menu">
+		<ul>
+  			<li><a href="index.php">Home Page</a></li>
+ 			 <li><a href="aboutUs.php">About</a></li>
+ 			 <li><a href="Profile.php">Profile</a></li>
+  			<li><a href="logOut.php">Log Out</a></li>
+		</ul>
+	</div>
+	
+	
+<div id="dialog-1" title="Warning!">This web page is for taking a picture of your face for the 
+									purpose of facial recognition and analysation, if you click
+									Submit Image, your picture will be stored in our database, 
+									if you agree, click yes if not click no to return to the home page.</div>
+
+	
+	<div id="container">
+		<video autoplay="true" id="videoElement">
+     
+		</video>
+	</div>
+	
+	<script>
+		var video = document.querySelector("#videoElement");
+ 
+		navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
+ 
+		if (navigator.getUserMedia) 
+		{       
+			navigator.getUserMedia({video: true}, handleVideo, videoError);
+		}
+ 
+		function handleVideo(stream) 
+		{
+			video.src = window.URL.createObjectURL(stream);
+		}
+ 
+		function videoError(e) 
+		{
+			// do something
+		}
+ 
+	</script>
+	
+	<form>
+		<input type='button' id='snapshot' value="Snapshot"/>
+	</form> 
+	
+	<canvas id='canvas' width='500' height='375'></canvas>  
+	
+	<script language='javascript'> 
+		document.getElementById('snapshot').onclick = function() {    
+			var video = document.querySelector("#videoElement");     
+			var canvas = document.getElementById('canvas');   
+			var ctx = canvas.getContext('2d');     
+			ctx.drawImage(video,0,0,500,375); 
+			} 
+	</script> 
+	
+	<form>
+		<input type='button' id='submit' value="Submit"/>
+	</form> 
+	
+	
+	<script language = 'javascript'>
+		document.getElementById('submit').onclick= function() {
+		var canvas = document.getElementById('canvas');
+		var dataUrl = canvas.toDataURL();
+		
+		var ajax = new XMLHttpRequest();
+		ajax.open("POST", 'saveData.php', false);
+		ajax.setRequestHeader('Content-Type', 'application/upload');
+		ajax.send(dataUrl);
+		
+		ajax.onreadystatechange=function()
+  	{
+		if (ajax.readyState == 4)
+		{
+			//alert(ajax.responseText);
+			// Write out the filename.
+    			
+		}
+  	}
+		
+	
+		}
+	
+	</script>
+	
+	<div id = "footer" >
+		<h3>Contact Details</h3>
+			<p id = footerText> 
+				Email: owen.bishop32@gmail.com <br>
+				Telephone: 07768149819
+			</p>
+	</div>
+</body>
+</html>
