@@ -23,6 +23,9 @@ $email = $_POST['email'];
 $pass = $_POST['pass'];
 $firstname = $_POST['forename'];
 $surname = $_POST['surname'];
+$date = $_POST['date'];
+$gender = $_POST['gender'];
+echo $date;
 
 if($email =="" || $pass == ""){
 	$error = "Not all fields completed";
@@ -31,7 +34,7 @@ if($email =="" || $pass == ""){
 			echo "<h4>email already exists  </h4>";
 			include 'register.html';
 }else{
-		$query = mysqli_query($dbserver, "INSERT INTO User (Forename, Surname, Email_Address, UserPassword) VALUES ('$firstname', '$surname', '$email', '$pass')");
+		$query = mysqli_query($dbserver, "INSERT INTO User (Forename, Surname, Email_Address, UserPassword, Date_Of_Birth, gender) VALUES ('$firstname', '$surname', '$email', '$pass', '$date', '$gender')");
 		include 'login.php';
 		die("<h4>Account created, please log in </h4>");
 		

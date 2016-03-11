@@ -87,22 +87,47 @@
 		<input type='button' id='snapshot' value="Snapshot"/>
 	</form> 
 	
-	<canvas id='canvas' width='500' height='375'></canvas>  
+	<canvas id='canvas' width='200' height='200'></canvas>  
+	<canvas id='cross' width='200' height='200'></canvas>
+
+	
+	<script language='javascript'>
+		var canvas = document.getElementById('cross');
+		var ctx = canvas.getContext('2d');
+		
+		ctx.beginPath();
+			ctx.moveTo(100,0);
+			ctx.lineTo(100,200);
+			ctx.lineWidth = 1;
+			ctx.strokeStyle = '#ff0000';
+			ctx.stroke();
+			
+			ctx.beginPath();
+			ctx.moveTo(0,100);
+			ctx.lineTo(200,100);
+			ctx.lineWidth = 1;
+			ctx.strokeStyle = '#ff0000';
+			ctx.stroke();
+	</script>
 	
 	<script language='javascript'> 
 		document.getElementById('snapshot').onclick = function() {    
 			var video = document.querySelector("#videoElement");     
 			var canvas = document.getElementById('canvas');   
-			var ctx = canvas.getContext('2d');     
-			ctx.drawImage(video,0,0,500,375); 
+			var contex = canvas.getContext('2d'); 
+
+			
+			contex.drawImage(video,0,0,200,200); 
 			} 
 	</script> 
 	
 	<form>
 		<input type='button' id='submit' value="Submit"/>
 	</form> 
-	
-	
+	<div id="textWrapper">
+		<p><b>Please make sure the center of your face<br>
+				is in the middle of the red cross.</b></p>
+	</div>
 	<script language = 'javascript'>
 		document.getElementById('submit').onclick= function() {
 		var canvas = document.getElementById('canvas');

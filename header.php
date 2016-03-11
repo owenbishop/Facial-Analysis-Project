@@ -1,4 +1,10 @@
 <?php // Example 21-2: header.php
+echo("<link href='http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css' rel='stylesheet'>");
+echo("<script src='http://code.jquery.com/jquery-1.10.2.js'></script>");
+echo("<script src='http://code.jquery.com/ui/1.10.4/jquery-ui.js'></script>");
+echo("<link rel='stylesheet' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>");
+echo("<script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'></script>");
+echo("<link rel='stylesheet' type='text/css' href='facialRecognition.css'>");
 session_start();
 include 'functions.php';
 $userstr = ' (Guest)';
