@@ -25,6 +25,7 @@ if ($loggedin)
          "<li><a href='aboutUs.php'>About Us</a></li>" .
          "<li><a href='takePhoto.html'>Take Photo</a></li>" .
          "<li><a href='profile.php'>Profile</a></li>" .
+		 "<li><a href='results.php'>Analysis Results</a></li>" .
          "<li><a href='logOut.php'>Log Out</a></li></ul></div>";
 		 
 }

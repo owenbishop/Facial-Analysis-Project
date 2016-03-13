@@ -18,7 +18,9 @@ Forename varchar(20),
 Surname varchar(20),
 Email_Address varchar(40),
 UserPassword varchar(100),
-/* Date_of_Birth date,*/
+Date_of_Birth date,
+gender varchar(6),
+race varchar(20),
 Primary key(UserID)
 );
 
@@ -28,6 +30,14 @@ ImageID int unsigned not null auto_increment,
 UserID int(10) not null,
 Image longtext,
 primary key (ImageID),
+foreign key (UserID) references user (UserID)
+);
+
+create table ImagePath
+(
+imagePath varchar(100),
+UserID int(10) not null,
+primary key (imagePath),
 foreign key (UserID) references user (UserID)
 );
 
@@ -43,6 +53,10 @@ primary key (ResultID),
 foreign key (UserID) references user (UserID),
 foreign key (ImageID) references image (ImageID)
 );
+
+create table result(
+user varchar(100),
+path varchar(100));
 
 create table Consent
 (
